@@ -11,6 +11,7 @@ class Car:
         self.y = y
         self.speed = speed
         self.health = health
+        self.health_taken = 0
         self.direction = 'Forward'
 
     def move(self):
@@ -34,6 +35,9 @@ class Small_car(Car):
         super().__init__(speed, x, y, health)
 
     def draw(self, win):
+        rectangle1 = pygame.Rect(self.x + 10, self.y - 30, self.health, 10)
+        rectangle2 = pygame.Rect(self.x + 10, self.y - 30, self.health_taken, 10)
+
         if self.direction == 'Forward':
             rotated_image = pygame.transform.rotate(small_car, 0)
         elif self.direction == 'Left':
@@ -42,6 +46,8 @@ class Small_car(Car):
             rotated_image = pygame.transform.rotate(small_car, -90)
 
         win.blit(rotated_image, (self.x,self.y))
+        pygame.draw.rect(win, (0,255,0), rectangle1)
+        pygame.draw.rect(win, (255,0,0), rectangle2)
 
     def change_direction(self): # Left/Right/Forward
         if self.x == 217 and self.y > 190:
@@ -63,6 +69,8 @@ class Medium_car(Car):
         super().__init__(speed, x, y, health)
 
     def draw(self, win):
+        rectangle1 = pygame.Rect(self.x + 15, self.y - 30, self.health, 10)
+        rectangle2 = pygame.Rect(self.x + 15, self.y - 30, self.health_taken, 10)
         if self.direction == 'Forward':
             rotated_image = pygame.transform.rotate(medium_car, 0)
         elif self.direction == 'Left':
@@ -70,6 +78,9 @@ class Medium_car(Car):
         else:
             rotated_image = pygame.transform.rotate(medium_car, -90)
         win.blit(rotated_image, (self.x,self.y))
+
+        pygame.draw.rect(win, (0,255,0), rectangle1)
+        pygame.draw.rect(win, (255,0,0), rectangle2)
 
     def change_direction(self): # Left/Right/Forward
         if self.x == 190 and self.y > 159: # First turn
@@ -90,6 +101,9 @@ class Big_car(Car):
         super().__init__(speed, x, y, health)
 
     def draw(self, win):
+        rectangle1 = pygame.Rect(self.x + 15, self.y - 30, self.health, 10)
+        rectangle2 = pygame.Rect(self.x + 15, self.y - 30, self.health_taken, 10)
+
         if self.direction == 'Forward':
             rotated_image = pygame.transform.rotate(big_car, 0)
         elif self.direction == 'Left':
@@ -97,6 +111,8 @@ class Big_car(Car):
         else:
             rotated_image = pygame.transform.rotate(big_car, -90)
         win.blit(rotated_image, (self.x,self.y))
+        pygame.draw.rect(win, (0,255,0), rectangle1)
+        pygame.draw.rect(win, (255,0,0), rectangle2)
 
     def change_direction(self): # Left/Right/Forward
         if self.x == 193 and self.y > 165: # First turn
